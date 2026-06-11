@@ -6,7 +6,6 @@
 <title>🎲 飲み会サイコロ</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
     --bg: #0f0f14;
     --surface: #1a1a24;
@@ -21,7 +20,6 @@
     --radius: 16px;
     --radius-sm: 10px;
   }
-
   body {
     background: var(--bg);
     color: var(--text);
@@ -32,24 +30,9 @@
     align-items: center;
     padding: 2rem 1rem 4rem;
   }
-
-  header {
-    text-align: center;
-    margin-bottom: 2.5rem;
-  }
-  header h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    color: var(--accent);
-    margin-bottom: 4px;
-  }
-  header p {
-    font-size: 0.8rem;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-  }
-
+  header { text-align: center; margin-bottom: 2.5rem; }
+  header h1 { font-size: 1.5rem; font-weight: 600; letter-spacing: 0.04em; color: var(--accent); margin-bottom: 4px; }
+  header p { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.05em; }
   .card {
     background: var(--surface);
     border: 0.5px solid var(--border);
@@ -58,8 +41,6 @@
     width: 100%;
     max-width: 420px;
   }
-
-  /* サイコロボタン */
   #dice-btn {
     display: flex;
     flex-direction: column;
@@ -76,16 +57,11 @@
     gap: 8px;
     outline: none;
   }
-  #dice-btn:hover {
-    border-color: var(--accent);
-    box-shadow: 0 0 24px var(--accent-glow);
-  }
+  #dice-btn:hover { border-color: var(--accent); box-shadow: 0 0 24px var(--accent-glow); }
   #dice-btn:active { transform: scale(0.94); }
   #dice-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-  #dice-face { font-size: 3rem; line-height: 1; transition: transform 0.05s; }
+  #dice-face { font-size: 3rem; line-height: 1; }
   #dice-label { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; }
-
-  /* テーマ表示 */
   #theme-area {
     text-align: center;
     min-height: 100px;
@@ -99,22 +75,10 @@
     border-radius: var(--radius-sm);
     border: 0.5px solid rgba(200,169,110,0.2);
     margin-bottom: 1.5rem;
-    transition: opacity 0.25s;
   }
   #theme-emoji { font-size: 2.2rem; }
-  #theme-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--text);
-    line-height: 1.4;
-  }
-  #theme-desc {
-    font-size: 0.8rem;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  /* 面数バッジ */
+  #theme-title { font-size: 1.2rem; font-weight: 600; color: var(--text); line-height: 1.4; }
+  #theme-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
   .badge {
     display: inline-block;
     background: var(--accent-dim);
@@ -126,114 +90,28 @@
     border-radius: 99px;
     margin-bottom: 1.5rem;
   }
-
-  /* 履歴 */
-  .history-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
+  .history-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
   .history-header span { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; }
-  .history-header button {
-    background: none; border: none; cursor: pointer;
-    font-size: 0.7rem; color: var(--muted);
-    padding: 2px 6px;
-    border-radius: 4px;
-    transition: color 0.15s;
-  }
+  .history-header button { background: none; border: none; cursor: pointer; font-size: 0.7rem; color: var(--muted); padding: 2px 6px; border-radius: 4px; transition: color 0.15s; font-family: inherit; }
   .history-header button:hover { color: var(--text); }
   #history-list { display: flex; flex-direction: column; gap: 6px; }
-  .history-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 12px;
-    background: var(--surface2);
-    border-radius: var(--radius-sm);
-    font-size: 0.82rem;
-    color: var(--text);
-  }
-  .history-item .h-num {
-    font-size: 0.65rem;
-    color: var(--muted);
-    min-width: 28px;
-    text-align: right;
-    margin-left: auto;
-  }
+  .history-item { display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: var(--surface2); border-radius: var(--radius-sm); font-size: 0.82rem; color: var(--text); }
+  .history-item .h-num { font-size: 0.65rem; color: var(--muted); min-width: 28px; text-align: right; margin-left: auto; }
   .empty-msg { font-size: 0.78rem; color: var(--muted); text-align: center; padding: 12px 0; }
-
-  /* 設定タブ */
-  .tabs {
-    display: flex;
-    gap: 0;
-    border-bottom: 0.5px solid var(--border);
-    margin-bottom: 1.25rem;
-  }
-  .tab-btn {
-    background: none;
-    border: none;
-    border-bottom: 2px solid transparent;
-    padding: 8px 18px;
-    font-size: 0.8rem;
-    cursor: pointer;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-    transition: all 0.15s;
-    margin-bottom: -0.5px;
-  }
-  .tab-btn.active {
-    border-bottom-color: var(--accent);
-    color: var(--accent);
-  }
-
-  /* 編集リスト */
-  .edit-row {
-    background: var(--surface2);
-    border-radius: var(--radius-sm);
-    padding: 10px 12px;
-    margin-bottom: 8px;
-  }
+  .tabs { display: flex; border-bottom: 0.5px solid var(--border); margin-bottom: 1.25rem; }
+  .tab-btn { background: none; border: none; border-bottom: 2px solid transparent; padding: 8px 18px; font-size: 0.8rem; cursor: pointer; color: var(--muted); letter-spacing: 0.04em; transition: all 0.15s; margin-bottom: -0.5px; font-family: inherit; }
+  .tab-btn.active { border-bottom-color: var(--accent); color: var(--accent); }
+  .edit-row { background: var(--surface2); border-radius: var(--radius-sm); padding: 10px 12px; margin-bottom: 8px; }
   .edit-row-top { display: flex; gap: 6px; margin-bottom: 6px; align-items: center; }
-  .edit-input {
-    background: var(--bg);
-    border: 0.5px solid var(--border2);
-    border-radius: 8px;
-    color: var(--text);
-    font-size: 0.8rem;
-    padding: 6px 9px;
-    outline: none;
-    font-family: inherit;
-  }
+  .edit-input { background: var(--bg); border: 0.5px solid var(--border2); border-radius: 8px; color: var(--text); font-size: 0.8rem; padding: 6px 9px; outline: none; font-family: inherit; }
   .edit-input:focus { border-color: var(--accent); }
   .edit-emoji { width: 52px; text-align: center; font-size: 1rem; }
   .edit-title { flex: 1; }
   .edit-desc { width: 100%; }
-  .del-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--muted);
-    font-size: 1rem;
-    padding: 0 4px;
-    transition: color 0.15s;
-  }
+  .del-btn { background: none; border: none; cursor: pointer; color: var(--muted); font-size: 1rem; padding: 0 4px; transition: color 0.15s; }
   .del-btn:hover { color: #e06060; }
-  .add-btn {
-    width: 100%;
-    padding: 10px;
-    background: none;
-    border: 0.5px dashed var(--border2);
-    border-radius: var(--radius-sm);
-    color: var(--muted);
-    font-size: 0.8rem;
-    cursor: pointer;
-    margin-top: 4px;
-    transition: border-color 0.15s, color 0.15s;
-    font-family: inherit;
-  }
+  .add-btn { width: 100%; padding: 10px; background: none; border: 0.5px dashed var(--border2); border-radius: var(--radius-sm); color: var(--muted); font-size: 0.8rem; cursor: pointer; margin-top: 4px; transition: border-color 0.15s, color 0.15s; font-family: inherit; }
   .add-btn:hover { border-color: var(--accent); color: var(--accent); }
-
   @media (max-width: 440px) {
     body { padding: 1.5rem 0.75rem 3rem; }
     #dice-btn { width: 120px; height: 120px; }
@@ -242,34 +120,28 @@
 </style>
 </head>
 <body>
-
 <header>
   <h1>🎲 飲み会サイコロ</h1>
   <p>ZOOM飲み会トークテーマ</p>
 </header>
-
 <div class="card">
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('play')" id="tab-play">あそぶ</button>
     <button class="tab-btn" onclick="switchTab('edit')" id="tab-edit">テーマ編集</button>
   </div>
-
   <div id="pane-play">
     <div style="text-align:center;">
-      <span class="badge" id="face-badge">10面サイコロ</span>
+      <span class="badge" id="face-badge">14面サイコロ</span>
     </div>
-
     <button id="dice-btn" onclick="rollDice()">
       <div id="dice-face">🎲</div>
       <div id="dice-label">タップして振る</div>
     </button>
-
     <div id="theme-area">
       <div id="theme-emoji">🍺</div>
       <div id="theme-title">サイコロを振ってね</div>
       <div id="theme-desc">ボタンをタップするとテーマが出ます</div>
     </div>
-
     <div class="history-header">
       <span>履歴</span>
       <button onclick="clearHistory()">クリア</button>
@@ -278,34 +150,34 @@
       <p class="empty-msg">まだ振っていません</p>
     </div>
   </div>
-
   <div id="pane-edit" style="display:none;">
     <div id="edit-list"></div>
     <button class="add-btn" onclick="addTheme()">＋ テーマを追加</button>
   </div>
 </div>
-
 <script>
 let themes = [
-  { emoji: "🍺", title: "今日の失敗談", desc: "最近やってしまったミスや笑える失敗を正直に告白" },
-  { emoji: "💸", title: "一番無駄にした出費", desc: "後悔した買い物・サブスクを暴露" },
-  { emoji: "😤", title: "最近のプチ不満", desc: "職場・生活・世の中への小さなぼやき" },
-  { emoji: "🌴", title: "行きたい場所ベスト1", desc: "今すぐ飛んでいけるなら、どこに？" },
-  { emoji: "🎮", title: "ハマってるもの", desc: "最近お金か時間をつぎ込んでいるもの" },
-  { emoji: "😳", title: "正直すぎる自己評価", desc: "今の自分を点数にすると何点？その理由は" },
-  { emoji: "🤝", title: "チームへの本音", desc: "普段言えないありがとう・ごめんを言う時間" },
-  { emoji: "🍜", title: "最近のベストごはん", desc: "最高だった一食を語り倒す" },
-  { emoji: "🔥", title: "密かな野望", desc: "誰にも言っていない挑戦したいことを発表" },
-  { emoji: "🎁", title: "もらって嬉しかったもの", desc: "物でも言葉でも。最近の嬉しい贈りもの" },
+  { emoji: "😡", title: "正直に言って、最近誰かにイラッとした瞬間", desc: "誰が何をした？今夜だけ正直に話していい" },
+  { emoji: "💸", title: "絶対に言えないと思ってた秘密の出費", desc: "家族にも言えない、あの支出をここで暴露" },
+  { emoji: "💣", title: "チームに言いたいけど言えなかったこと", desc: "今夜お酒の勢いで言ってしまえ" },
+  { emoji: "✈️", title: "今の仕事を全部捨てて逃げるなら、どこへ？", desc: "現実度外視。明日消えるとしたらどこに行く？" },
+  { emoji: "🤫", title: "誰にも言ってないけどハマってるやばいもの", desc: "趣味でも習慣でも。恥ずかしいほど正直に" },
+  { emoji: "⚖️", title: "今の自分、人生の何合目？正直に言え", desc: "頂上を10合目として、今どこにいる？なぜ？" },
+  { emoji: "🔥", title: "今夜だけ言える、誰かへの本音", desc: "感謝でも不満でも。言いたかったことを言う時間" },
+  { emoji: "🍜", title: "人生で一番幸せだった一食、発表せよ", desc: "どこで・何を・誰と。全力プレゼン。60点満点でジャッジされます" },
+  { emoji: "💀", title: "3年後、ぶっちゃけどうなってたい？", desc: "建前なし。本当に手に入れたい未来を言え" },
+  { emoji: "🙏", title: "誰かに言いたかった「ありがとう」", desc: "ずっと言えてなかった感謝を、今ここで" },
+  { emoji: "🍻", title: "今の給料、正直満足してる？", desc: "不満があるなら今夜ぶちまけろ" },
+  { emoji: "👀", title: "実は気になってた人、いる？", desc: "職場でも、昔でも。今夜だけOK" },
+  { emoji: "😬", title: "自分の一番ダサかった瞬間", desc: "消したい記憶を今夜あえて語る" },
+  { emoji: "🤥", title: "バレてないと思ってるけど、たぶんバレてること", desc: "心当たりがある人から先に" },
 ];
-
 let history = [];
 let rolling = false;
 
 function updateBadge() {
   document.getElementById('face-badge').textContent = themes.length + '面サイコロ';
 }
-
 function rollDice() {
   if (rolling) return;
   rolling = true;
@@ -332,7 +204,6 @@ function rollDice() {
     }
   }, 75);
 }
-
 function renderHistory() {
   const el = document.getElementById('history-list');
   if (!history.length) {
@@ -347,12 +218,10 @@ function renderHistory() {
     </div>
   `).join('');
 }
-
 function clearHistory() {
   history = [];
   renderHistory();
 }
-
 function switchTab(tab) {
   document.getElementById('pane-play').style.display = tab === 'play' ? 'block' : 'none';
   document.getElementById('pane-edit').style.display = tab === 'edit' ? 'block' : 'none';
@@ -360,7 +229,6 @@ function switchTab(tab) {
   document.getElementById('tab-edit').classList.toggle('active', tab === 'edit');
   if (tab === 'edit') renderEditList();
 }
-
 function renderEditList() {
   document.getElementById('edit-list').innerHTML = themes.map((t, i) => `
     <div class="edit-row">
@@ -373,19 +241,16 @@ function renderEditList() {
     </div>
   `).join('');
 }
-
 function removeTheme(i) {
   themes.splice(i, 1);
   renderEditList();
   updateBadge();
 }
-
 function addTheme() {
   themes.push({ emoji: '🎯', title: '新しいテーマ', desc: '説明を入力してください' });
   renderEditList();
   updateBadge();
 }
-
 updateBadge();
 </script>
 </body>
